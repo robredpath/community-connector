@@ -20,6 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# This is a disposable key just to make clone-and-run easier - make sure you change this in production!
 SECRET_KEY = '$%%c!29--06ud^yl@clmy1r!77ffiwf&cbg89!-%)(0a@da$@e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'community'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -119,3 +121,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Application customisation
+# TODO: refactor this out to be customisable through Admin
+
+COMMUNITY_NAME = "Your Community"
+SITE_EMAIL = "invalid@example.com"
