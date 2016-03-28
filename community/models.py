@@ -5,3 +5,8 @@ class Message(models.Model):
 	message_text_short = models.CharField(max_length=160)
 	sms_has_been_sent = models.BooleanField(default=False, editable=False)
 	email_has_been_sent = models.BooleanField(default=False, editable=False)
+
+class Event(models.Model):
+	start_time = models.DateTimeField()
+	end_time = models.DateTimeField()
+	title = models.CharField(max_length=250)
