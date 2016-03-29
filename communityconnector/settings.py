@@ -19,10 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# This is a disposable key just to make clone-and-run easier - make sure you change this in production!
-SECRET_KEY = '$%%c!29--06ud^yl@clmy1r!77ffiwf&cbg89!-%)(0a@da$@e'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -155,8 +151,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Application customisation
-# TODO: refactor this out to be customisable through Admin
-
-COMMUNITY_NAME = "Your Community"
-SITE_EMAIL = "invalid@example.com"
+from communityconnector.settings_local import *
