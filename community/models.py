@@ -1,4 +1,14 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
+
+def validate_future(dt):
+	if dt < timezone.now():
+		raise ValidationError(
+            _('%(date)s is not in the future'), params={'date': dt}
+        )
+
 
 class Message(models.Model):
 	message_text_long = models.CharField(max_length=4000)
@@ -15,9 +25,9 @@ class Message(models.Model):
 
 
 class Event(models.Model):
-	start_time = models.DateTimeField()
-	end_time = models.DateTimeField()
+	start_time = models.DateTimeField(validators=[validate_future])
+	end_time = models.DateTimeField(validators=[validate_future])
 	title = models.CharField(max_length=250)
 
 	def __str__(self):
-		return "{}: {} to {}".format(title, start_time, end_time)
+		return "{}: {} to {}".format(self.title, self.start_time, self.end_time)
