@@ -1,4 +1,4 @@
-pip==8.1.0
+pip==8.1.1
 Django==1.9.4
 django-facebook==6.0.3
 Unidecode==0.4.19
