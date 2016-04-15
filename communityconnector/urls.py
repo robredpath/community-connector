@@ -18,9 +18,9 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf import settings
 
-
 urlpatterns = [
+    url(r'^$', include('community.urls')),
     url(r'^admin/', admin.site.urls),
-	url(r'^facebook/', include('django_facebook.urls')),
-	url(r'^accounts/', include('django_facebook.auth_urls')), #Don't add this line if you use django registration or userena for registration and auth.
+    url(r'^facebook/', include('django_facebook.urls')),
+    url(r'^accounts/', include('django_facebook.auth_urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

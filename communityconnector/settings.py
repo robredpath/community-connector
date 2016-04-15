@@ -162,8 +162,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
-AUTH_PROFILE_MODULE = 'django_facebook.FacebookProfile'
-
 
 FACEBOOK_DEFAULT_SCOPE = [ 'email', 'user_about_me', 'user_birthday', 'user_website', 'user_managed_groups', 'user_events', 'user_posts', 'rsvp_event', 'public_profile' ]
 
