@@ -57,5 +57,7 @@ class NotificationProfile(models.Model):
 class GroupProfile(models.Model):
     # A profile that a User can own which contains a group that
     # they're associated with
-
-    pass
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE)
+    group = models.IntegerField()

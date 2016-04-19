@@ -32,11 +32,15 @@
 	<h1>Welcome {{ user }}</h1><a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}">logout</a><br />
 
 <p>
+Current group: {{ current_group.name }}
+</p>
+
+<p>
 Please select one of your groups below to subscribe to
 </p>
 
     <p>
-    
+
 {% if groups %}
 
 <form action="{% url 'community:index' %}" method="post">
