@@ -7,10 +7,10 @@ logger = logging.getLogger(__name__)
 
 
 @receiver(pre_save, sender=Event)
-def create_messages_for_event(sender, **kwargs):
-    logger.debug("hello")
+def create_messages_for_event(sender, instance, **kwargs):
+    logger.warn(instance)
     message = Message(
-        message_text_long="long",
-        message_text_short="short"
+        message_text_long="New event: {0}".format(instance),
+        message_text_short="New event: {0}".format(instance)
     )
     message.save()

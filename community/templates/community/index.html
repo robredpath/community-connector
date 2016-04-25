@@ -32,7 +32,7 @@
 	<h1>Welcome {{ user }}</h1><a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}">logout</a><br />
 
 <p>
-Current group: {{ current_group.name }}
+Current group: {{ current_fb_group.name }}
 </p>
 
 <p>
@@ -41,13 +41,13 @@ Please select one of your groups below to subscribe to
 
     <p>
 
-{% if groups %}
+{% if fb_groups %}
 
 <form action="{% url 'community:index' %}" method="post">
 {% csrf_token %}
-{% for group in groups %}
-    <input type="radio" name="group" id="group{{ group.id }}" value="{{ group.id }}" />
-    <label for="group{{ group.id }}">{{ group.name }}</label><br />
+{% for fb_group in fb_groups %}
+    <input type="radio" name="facebook_group" id="fb_group{{ fb_group.id }}" value="{{ fb_group.id }}" />
+    <label for="fb_group{{ fb_group.id }}">{{ fb_group.name }}</label><br />
 {% endfor %}
 <input type="submit" value="Select" />
 </form>

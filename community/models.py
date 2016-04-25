@@ -34,9 +34,17 @@ class Message(models.Model):
 
 
 class Event(models.Model):
+    # We store details of all the events that we know about
     start_time = models.DateTimeField(validators=[validate_future])
     end_time = models.DateTimeField(validators=[validate_future])
     title = models.CharField(max_length=250)
+    description = models.CharField(max_length=4000)
+    # eg the Facebook event ID.
+    # CharField because we're never doing maths with this value and other
+    # providers might use non-numeric IDs
+    external_id = models.CharField(max_length=128)
+    # Saves a refactor if we ever support other event sources
+    external_source = models.CharField(max_length=64, default="facebook")
 
     def __str__(self):
         return "{}: {} to {}".format(
@@ -46,18 +54,12 @@ class Event(models.Model):
         )
 
 
-class NotificationProfile(models.Model):
-    # Contains a user's notification settings
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        )
-
-
-class GroupProfile(models.Model):
-    # A profile that a User can own which contains a group that
-    # they're associated with
+class UserProfile(models.Model):
+    # A profile for users, to store settings
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE)
-    group = models.IntegerField()
+
+    # CharField because we're never doing maths with this value
+    facebook_group = models.CharField(max_length=128)
+    events = models.ManyToManyField(Event, blank=True)

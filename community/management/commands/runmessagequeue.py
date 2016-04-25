@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from community.models import Message
-from django.contrib.auth.models import User
+from django_facebook.models import FacebookCustomUser
 from django.conf import settings
 
 # Intended to be run as a cron
@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         for message in Message.objects.filter(email_has_been_sent=False):
-            for user in User.objects.all():
+            for user in FacebookCustomUser.objects.all():
                 subject = "New messages from %s" % settings.COMMUNITY_NAME
                 user.email_user(subject, message.message_text_long)
                 message.email_has_been_sent = True
