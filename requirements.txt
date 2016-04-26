@@ -1,5 +1,5 @@
 Django==1.9.4
-django-facebook==6.0.4
+-e git+https://github.com/robredpath/Django-facebook.git@5dc52568957fe1696fde744211bd92c59a38c3d9#egg=django_facebook
 facepy==1.0.8
 fandjango==4.2
 flake8==2.5.4
